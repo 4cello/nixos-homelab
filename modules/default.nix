@@ -74,7 +74,7 @@
           default = "";
           type = lib.types.str;
           description = ''
-            Base domain name to be used to access the homelab services via Caddy reverse proxy
+            Base domain name to be used to access the homelab services via reverse proxy
           '';
         };
         cloudflare.dnsCredentialsFile = lib.mkOption {
@@ -93,7 +93,7 @@
           users.${cfg.user.name} = {
             uid = cfg.user.id;
             isSystemUser = true;
-            group = cfg.group.name.name;
+            group = cfg.group.name;
           };
         };
       };
