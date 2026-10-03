@@ -11,6 +11,8 @@ in
     {
       services.${name} = {
         enable = true;
+        user = hl.user.name;
+        group = hl.group.name;
         allowConfigWrite = true;
         settings = {
           misc =
