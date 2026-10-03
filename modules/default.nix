@@ -29,7 +29,7 @@
           '';
         };
         mounts.merged = lib.mkOption {
-          default = "/mnt/user";
+          default = "/mnt/merged";
           type = lib.types.path;
           description = ''
             Path to the merged tier mount
