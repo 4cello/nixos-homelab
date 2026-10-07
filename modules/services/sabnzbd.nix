@@ -21,6 +21,7 @@ in
             in
             {
               port = 9595;
+              direct_unpack = 0;
               download_dir = "${download_dir}/incomplete";
               complete_dir = "${download_dir}/complete";
               host_whitelist = "${hl.services."${name}".url}";

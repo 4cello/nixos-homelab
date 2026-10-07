@@ -20,6 +20,10 @@
                     (lib.types.listOf lib.types.str)
                   ];
                 };
+                monitoredServices = lib.mkOption {
+                  type = lib.types.listOf lib.types.str;
+                  default = [ name ];
+                };
 
                 traefik = lib.mkOption {
                   default = { };

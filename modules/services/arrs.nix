@@ -4,6 +4,9 @@
       prowlarr
       sonarr
       radarr
+      bazarr
+      seerr
+      unpackerr
     ];
   };
 }

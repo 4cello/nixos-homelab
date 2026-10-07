@@ -77,6 +77,13 @@
             Base domain name to be used to access the homelab services via reverse proxy
           '';
         };
+        oidcUrl = lib.mkOption {
+          default = "";
+          type = lib.types.str;
+          description = ''
+            OIDC Issuer URL for the homelab services
+          '';
+        };
         cloudflare.dnsCredentialsFile = lib.mkOption {
           type = lib.types.path;
           example = ''
