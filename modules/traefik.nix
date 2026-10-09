@@ -98,6 +98,8 @@
             };
           };
 
+        networking.firewall.allowedTCPPorts = [ 8080 ];
+
         homelab.services."traefik-${config.networking.hostName}" = {
           traefik = {
             # enable = true;
