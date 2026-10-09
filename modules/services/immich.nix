@@ -8,7 +8,7 @@ in
     let
       hl = config.homelab;
       user = config.services.${name}.user;
-      mediaDir = "${hl.mounts.merged}/personal/${name}";
+      mediaDir = "${hl.mounts.fast}/personal/${name}";
     in
     {
       services.${name} = {
