@@ -24,6 +24,10 @@
                   type = lib.types.listOf lib.types.str;
                   default = [ name ];
                 };
+                publicUrl = lib.mkOption {
+                  default = null;
+                  type = lib.types.nullOr lib.types.str;
+                };
 
                 traefik = lib.mkOption {
                   default = { };

@@ -17,23 +17,33 @@
             mkTraefik =
               name: cfg:
               lib.mkIf cfg.traefik.enable {
-                http = {
-                  routers.${name} = {
-                    rule = mkRule name cfg.url;
-                    entryPoints = [ "websecure" ];
-                    service = if builtins.isString cfg.traefik.service then cfg.traefik.service else name;
-                    middlewares = cfg.traefik.middlewares;
-                  };
-                }
-                // (lib.optionalAttrs (!builtins.isString cfg.traefik.service) {
-                  services.${name} = {
-                    loadBalancer.servers = [
-                      {
-                        url = "http://127.0.0.1:${toString cfg.traefik.service.port}";
-                      }
-                    ];
-                  };
-                });
+                http = lib.mergeAttrsList [
+                  {
+                    routers.${name} = {
+                      rule = mkRule name cfg.url;
+                      entryPoints = [ "websecure" ];
+                      service = if builtins.isString cfg.traefik.service then cfg.traefik.service else name;
+                      middlewares = cfg.traefik.middlewares;
+                    };
+                  }
+                  (lib.optionalAttrs (!builtins.isString cfg.traefik.service) {
+                    services.${name} = {
+                      loadBalancer.servers = [
+                        {
+                          url = "http://127.0.0.1:${toString cfg.traefik.service.port}";
+                        }
+                      ];
+                    };
+                  })
+                  (lib.optionalAttrs (builtins.isString cfg.publicUrl) {
+                    routers."${name}-public" = {
+                      rule = "Host(`${cfg.publicUrl}`)";
+                      entryPoints = [ "cloudflare" ];
+                      service = name;
+                      # middlewares = cfg.traefik.middlewares;
+                    };
+                  })
+                ];
               };
 
             middlewares = [
@@ -82,6 +92,10 @@
                     aliasHeadersStrategy = "delete";
                     tls.certresolver = "letsencrypt";
                   };
+                };
+                cloudflare = {
+                  address = ":4443";
+                  http.aliasHeadersStrategy = "delete";
                 };
               };
               certificatesResolvers.letsencrypt.acme = {
