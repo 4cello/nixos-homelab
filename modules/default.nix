@@ -86,7 +86,7 @@
         };
         trustedIPs = lib.mkOption {
           default = [ ];
-          type = lib.types.listof lib.types.str;
+          type = lib.types.listOf lib.types.str;
           description = "Trusted IPs, for example for Treafik";
         };
         cloudflare.dnsCredentialsFile = lib.mkOption {
