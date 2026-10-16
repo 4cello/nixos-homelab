@@ -84,6 +84,11 @@
             OIDC Issuer URL for the homelab services
           '';
         };
+        trustedIPs = lib.mkOption {
+          default = [ ];
+          type = lib.types.listof lib.types.str;
+          description = "Trusted IPs, for example for Treafik";
+        };
         cloudflare.dnsCredentialsFile = lib.mkOption {
           type = lib.types.path;
           example = ''

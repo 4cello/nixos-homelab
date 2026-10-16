@@ -76,6 +76,7 @@
               entryPoints = {
                 web = {
                   address = ":80";
+                  forwardedHeaders.trustedIPs = config.homelab.trustedIPs;
                   http = {
                     aliasHeadersStrategy = "delete";
                     redirections.entryPoint = {
@@ -88,6 +89,7 @@
                 websecure = {
                   address = ":443";
                   asDefault = true;
+                  forwardedHeaders.trustedIPs = config.homelab.trustedIPs;
                   http = {
                     aliasHeadersStrategy = "delete";
                     tls.certresolver = "letsencrypt";
