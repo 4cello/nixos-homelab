@@ -17,7 +17,7 @@ in
       };
 
       homelab.services."${name}" = {
-        traefik.service.port = config.services.${name}.listenPort;
+        traefik.service.port = config.services.${name}.settings.general.port;
         traefik.middlewares = [ "tinyauth" ];
       };
     };
