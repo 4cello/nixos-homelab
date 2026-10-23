@@ -17,6 +17,7 @@ in
         user = hl.user.name;
         group = hl.group.name;
         overrideDevices = false;
+        overrideFolders = false;
         openDefaultPorts = true;
         settings = {
           gui.insecureSkipHostcheck = true;
