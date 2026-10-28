@@ -27,7 +27,7 @@ in
             ".DS_STORE/*"
             "desktop.ini"
           ];
-          PAPERLESS_FILENAME_FORMAT = "{{ owner_username }}/{{ created_year }}/{{ correspondent }}/{{ title }}";
+          PAPERLESS_FILENAME_FORMAT = "{{ owner_username }}/{{ created_year }}/{{ correspondent }}/{{ title|slugify }}";
           PAPERLESS_FILENAME_FORMAT_REMOVE_NONE = true;
           PAPERLESS_OCR_LANGUAGE = "deu+eng";
           PAPERLESS_OCR_USER_ARGS = {
